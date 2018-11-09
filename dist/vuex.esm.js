@@ -1,6 +1,6 @@
 /**
  * vuex v3.0.1
- * (c) 2017 Evan You
+ * (c) 2018 Evan You
  * @license MIT
  */
 var applyMixin = function (Vue) {
@@ -564,7 +564,10 @@ function resetStoreVM (store, state, hot) {
         oldVm._data.$$state = null;
       });
     }
-    Vue.nextTick(function () { return oldVm.$destroy(); });
+    Vue.nextTick(function () {
+      oldVm.$destroy();
+      oldVm = null;
+    });
   }
 }
 

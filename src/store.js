@@ -228,7 +228,7 @@ function resetStore (store, hot) {
 }
 
 function resetStoreVM (store, state, hot) {
-  const oldVm = store._vm
+  var oldVm = store._vm
 
   // bind store public getters
   store.getters = {}
@@ -269,7 +269,10 @@ function resetStoreVM (store, state, hot) {
         oldVm._data.$$state = null
       })
     }
-    Vue.nextTick(() => oldVm.$destroy())
+    Vue.nextTick(() => {
+      oldVm.$destroy()
+      oldVm = null
+    })
   }
 }
 
